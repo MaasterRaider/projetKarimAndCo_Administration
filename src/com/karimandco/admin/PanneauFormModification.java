@@ -26,7 +26,6 @@ public class PanneauFormModification extends javax.swing.JPanel {
     private Boolean dateNaissanceOK = false;
     private Integer ligne_selectionnee;
 
-    public Integer identifiant_utilisateur = null;
 
     /**
      * Creates new form PanneauFormModification
@@ -133,14 +132,6 @@ public class PanneauFormModification extends javax.swing.JPanel {
         this.panneauPrenom = panneauPrenom;
     }
 
-    public void setIdentifiant_utilisateur(Integer identifiant_utilisateur) {
-        this.identifiant_utilisateur = identifiant_utilisateur;
-    }
-
-    public Integer getIdentifiant_utilisateur() {
-        return identifiant_utilisateur;
-    }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -231,7 +222,7 @@ public class PanneauFormModification extends javax.swing.JPanel {
         if (nomOK && prenomOK && identifiantOK && courrielOK && numeroTelephoneOK && dateNaissanceOK) {
             String[] date_split = this.panneauDateNaissance.getChamp2().getText().split("/");
             String date_newFormat = date_split[2] + "-" + date_split[1] + "-" + date_split[0];            
-            Integer resultat = DaoSIO.getInstance().requeteAction("UPDATE utilisateurs SET nom = '" + this.panneauNom.getChamp2().getText() + "', prenom = '" +  this.panneauPrenom.getChamp2().getText() + "', identifiant = '" + this.getIdentifiant_utilisateur() + "', courriel = '" + this.panneauCourriel.getChamp2().getText() + "', num_telephone = '" + this.panneauNumeroTelephone.getChamp2().getText() + "', date_de_naissance = '" + date_newFormat + "' WHERE id = '" + this.getLigne_selectionnee() + "'");
+            Integer resultat = DaoSIO.getInstance().requeteAction("UPDATE utilisateurs SET nom = '" + this.panneauNom.getChamp2().getText() + "', prenom = '" +  this.panneauPrenom.getChamp2().getText() + "', identifiant = '" + this.panneauIdentifiant.getChamp2().getText() + "', courriel = '" + this.panneauCourriel.getChamp2().getText() + "', num_telephone = '" + this.panneauNumeroTelephone.getChamp2().getText() + "', date_de_naissance = '" + date_newFormat + "' WHERE id = '" + this.getLigne_selectionnee() + "'");
             if (resultat > 0) {
                 panneauPereModification.getObjAutreFenetreAdmin().getjLabelEtatVider().setForeground(Color.blue);
                 panneauPereModification.getObjAutreFenetreAdmin().getjLabelEtatVider().setText("Modification réussie");

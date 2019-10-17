@@ -308,7 +308,6 @@ public class PanneauAdministration extends javax.swing.JPanel {
             int id_admin = (Integer.parseInt(String.valueOf(id)));
 
             cModification.getPanneauFormModification1().setLigne_selectionnee(id_admin);
-            cModification.getPanneauFormModification1().setIdentifiant_utilisateur(Integer.parseInt(String.valueOf(id)));
 
             String[] resultat = requeteSelectAllUpdateAdmin("SELECT * FROM utilisateurs WHERE id = '" + id_admin + "'");
             //Si le nom de lignes du tableau de la BDD est supérieur à 0 alors application des données de la BDD à notre tableau
