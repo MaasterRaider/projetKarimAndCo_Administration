@@ -10,6 +10,7 @@
 Ce projet correspond à une application permettant de gérer le parcours professionnel des étudiants du BTS SIO. Le composant disponible ci dessus est l'espace administrateur de l'application.  
 
 
+
 #### Fonctionnalités
 
 Avec ce composant, on peut :
@@ -21,15 +22,18 @@ Avec ce composant, on peut :
     -   Supprimer Modifier les valeurs d'un utilisateur 
 
 
+
 #### Documentation
 
 Javadoc :  [cliquez-ici](https://pawel956.github.io/projetKarimAndCo_ConnexionInscription/)  
 Document utilisateur :  [cliquez-ici](https://docs.google.com/document/d/1SoZUUYuQD3gA_-CL9Uf7U8R_goBUg8Na-MeSQCfs1do/edit?usp=sharing)
 
 
+
 #### Dépendances utilisés
 
 ![](https://camo.githubusercontent.com/282d36be0305dc452569a329684d267381146c1d/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f6d7973716c2d2d636f6e6e6563746f722d2d6a6176612d352e312e34382d73756363657373)
+
 
 
 #### Mise en marche du composant
@@ -45,6 +49,8 @@ Dépendances :  [cliquez-ici](https://drive.google.com/drive/folders/1dKuqR9ON-X
 
 Info importante :
     - Il se peut que le package "com.karimandco.auth" soit mise à jour assez régulièrement.Pour télécharger la dernière version  [cliquez-ici](https://github.com/pawel956/projetKarimAndCo_ConnexionInscription/)
+
+
 
 #### Informations divers
 Les actions de suppression sont protégées par un identifiant et un mot de passe administrateur.
