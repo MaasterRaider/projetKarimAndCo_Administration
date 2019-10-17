@@ -10,6 +10,7 @@ import com.karimandco.bdd.DaoSIO;
 import java.awt.Color;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -30,7 +31,6 @@ public class PanneauAdministration extends javax.swing.JPanel {
     public com.karimandco.admin.Inscription cInscription;
     public com.karimandco.admin.Modification cModification;
     public com.karimandco.admin.Connexion cConnexionAdmin;
-    private Object hexString;
 
     /**
      * Creates new form PanneauAdministration
@@ -310,7 +310,7 @@ public class PanneauAdministration extends javax.swing.JPanel {
             cModification.getPanneauFormModification1().setLigne_selectionnee(id_admin);
             cModification.getPanneauFormModification1().setIdentifiant_utilisateur(Integer.parseInt(String.valueOf(id)));
 
-            String[] resultat = DaoSIO.getInstance().requeteSelectAllUpdateAdmin("SELECT * FROM utilisateurs WHERE id = '" + id_admin + "'");
+            String[] resultat = requeteSelectAllUpdateAdmin("SELECT * FROM utilisateurs WHERE id = '" + id_admin + "'");
             //Si le nom de lignes du tableau de la BDD est supérieur à 0 alors application des données de la BDD à notre tableau
             cModification.getPanneauFormModification1().getPanneauNom().getChamp2().setText(resultat[4]);
             cModification.getPanneauFormModification1().getPanneauPrenom().getChamp2().setText(resultat[5]);
@@ -474,7 +474,7 @@ public class PanneauAdministration extends javax.swing.JPanel {
         //Suppression des lignes
         modele.removeRow(0);
         //Connexion de la table à la BDD pour selectionner toutes les données
-        String[][] resultat = DaoSIO.getInstance().requeteSelectAllAdmin("SELECT * FROM utilisateurs");
+        String[][] resultat = requeteSelectAllAdmin("SELECT * FROM utilisateurs");
         //Si le nom de lignes du tableau de la BDD est supérieur à 0 alors application des données de la BDD à notre tableau
         if (resultat.length > 0) {
             for (String[] ligne : resultat) {
@@ -494,6 +494,59 @@ public class PanneauAdministration extends javax.swing.JPanel {
 
     public void setjLabelEtatVider(JLabel jLabelEtatVider) {
         this.jLabelEtatVider = jLabelEtatVider;
+    }
+
+    public String[][] requeteSelectAllAdmin(String sql) {
+        String[][] resultat = null;
+
+        try {
+            int nbr_ligne = 0;
+            ResultSet res = DaoSIO.getInstance().requeteSelection("SELECT COUNT(*) FROM utilisateurs");
+            while (res.next()) {
+                nbr_ligne = res.getInt(1);
+            }
+
+            ResultSet lesTuples = DaoSIO.getInstance().requeteSelection(sql);
+            int nbr_colonne = lesTuples.getMetaData().getColumnCount() + 1;
+            int compteur_ligne = 0;
+
+            resultat = new String[nbr_ligne][nbr_colonne];
+
+            while (lesTuples.next()) {
+                for (int i = 1; i < nbr_colonne; i++) {
+                    String col_name = lesTuples.getMetaData().getColumnName(i);
+
+                    resultat[compteur_ligne][i] = lesTuples.getString(col_name);
+                }
+                compteur_ligne++;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(DaoSIO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return resultat;
+    }
+
+    public String[] requeteSelectAllUpdateAdmin(String sql) {
+        String[] resultat = new String[10];
+
+        try {
+            ResultSet lesTuples_bis = DaoSIO.getInstance().requeteSelection(sql);
+
+            // on attend au max 1 Tuple !!!!!
+            if (lesTuples_bis.next()) {
+                ResultSet lesTuples = DaoSIO.getInstance().requeteSelection("SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = 'utilisateurs'");
+
+                Integer i = 0;
+
+                while (lesTuples.next()) {
+                    resultat[i] = lesTuples_bis.getString(lesTuples.getString("COLUMN_NAME"));
+                    i++;
+                }
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(DaoSIO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return resultat;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -39,9 +39,8 @@ public class JPanelConnexionBanque extends javax.swing.JPanel {
         panneauIdentifiant.getjLabelNomChamp().setText("Identifiant");
         panneauMdp.getjLabelNomChampSecret().setText("Mot de passe :");
         panneauMdp.getChampSecret1().setText("");
-
         panneauMdp.getChampSecret1().setEditable(false);
-        
+
         tableau.add(jButton1);
         tableau.add(jButton2);
         tableau.add(jButton3);

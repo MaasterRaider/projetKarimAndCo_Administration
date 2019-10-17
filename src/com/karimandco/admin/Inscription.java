@@ -5,6 +5,7 @@
  */
 package com.karimandco.admin;
 
+import com.karimandco.auth.PanneauFormInscription;
 import com.karimandco.auth.*;
 
 /**
