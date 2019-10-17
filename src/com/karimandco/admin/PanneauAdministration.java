@@ -434,9 +434,9 @@ public class PanneauAdministration extends javax.swing.JPanel {
                             }
                         } else {
                             cConnexionAdmin.getPanneauFormConnexion1().getjLabelEtatConnexion().setForeground(Color.red);
-                            if (cConnexionAdmin.getPanneauFormConnexion1().getConnexionOK()) {
+                            if (!Utilisateur.getInstance().getStatut().equals(1)) {
                                 cConnexionAdmin.getPanneauFormConnexion1().getjLabelEtatConnexion().setText("Vous n'êtes pas admin");
-                            } else {
+                            } else if (Utilisateur.getInstance().getEstConnecte().equals(false)) {
                                 cConnexionAdmin.getPanneauFormConnexion1().getjLabelEtatConnexion().setText("Identifiant et/ou mot de passe incorrect(s)");
                             }
                         }
