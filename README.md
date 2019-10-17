@@ -55,9 +55,9 @@ Info importante :
 #### Informations divers
 Les actions de suppression sont protégées par un identifiant et un mot de passe administrateur.
 <br>
-Identifiant : admin
+Identifiant : Admin
 <br>
-Mot de passe : admin123
+Mot de passe : 123456
 <br><br>
 Le panneau qui contient l'espace administrateur : PanneauAdministration.java
 La connexion a la base de donnée se fais avec la classe DaoSio
