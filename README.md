@@ -64,5 +64,3 @@ Mot de passe : 123456
 <br><br>
 Le panneau qui contient l'espace administrateur : PanneauAdministration.java
 La connexion a la base de donnée se fais avec la classe DaoSio
-![enter image description here](https://www.freepngimg.com/thumb/java/1-2-java-free-png-image.png)
-<br>
