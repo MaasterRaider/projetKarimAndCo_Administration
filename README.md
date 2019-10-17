@@ -44,7 +44,8 @@ Sur NetBeans clic droit sur le projet, propriété, Libraries, add JAR/Folder.
 Dépendances :  [cliquez-ici](https://drive.google.com/drive/folders/1dKuqR9ON-Xatcf9F6PNjLwxOV_AhOw_f?usp=sharing)  
 
 Info importante :
-    - Il se peut que le package "com.karimandco.auth" soit mise à jour assez régulièrement. Pour télécharger la dernière version  [cliquez-ici](https://github.com/pawel956/projetKarimAndCo_ConnexionInscription/)
+    
+    - Il se peut que le package "com.karimandco.auth" soit mise à jour assez régulièrement.Pour télécharger la dernière version  [cliquez-ici](https://github.com/pawel956/projetKarimAndCo_ConnexionInscription/)
 
 #### Informations divers
 Les actions de suppression sont protégées par un identifiant et un mot de passe administrateur.
