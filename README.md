@@ -35,7 +35,7 @@ Document utilisateur :  [cliquez-ici](https://docs.google.com/document/d/1SoZUUY
 #### Mise en marche du composant
 1) Télécharger le composant en cliquant sur le bouton vert "Clone or Download" puis "Download ZIP".
 2) Dézipper le projet puis l'ouvrir avec votre IDE 
-3) Copier coller les deux package "com.karimandco.admin" et "com.karimandco.auth" dans votre nouveau projet 
+3) Copier coller les trois packages "com.karimandco.admin", "com.karimandco.auth" et "com.karimandco.bdd dans votre nouveau projet 
 4) Ajouter la librairie JCBD à votre projet
 Sur NetBeans clic droit sur le projet, propriété, Libraries, add Library. Si la Library JCBD n'existe pas aller sur 
 [https://dev.mysql.com/downloads/connector/j/](https://dev.mysql.com/downloads/connector/j/)
@@ -43,6 +43,8 @@ Sur NetBeans clic droit sur le projet, propriété, Libraries, add Library. Si l
 Sur NetBeans clic droit sur le projet, propriété, Libraries, add JAR/Folder.
 Dépendances :  [cliquez-ici](https://drive.google.com/drive/folders/1dKuqR9ON-Xatcf9F6PNjLwxOV_AhOw_f?usp=sharing)  
 
+Info importante :
+    - Il se peut que le package "com.karimandco.auth" soit mise à jour assez régulièrement. Pour télécharger la dernière version  [cliquez-ici](https://github.com/pawel956/projetKarimAndCo_ConnexionInscription/)
 
 #### Informations divers
 Les actions de suppression sont protégées par un identifiant et un mot de passe administrateur.
