@@ -27,7 +27,6 @@
                           <Component id="jButtonCreerUtilisateur" alignment="0" max="32767" attributes="0"/>
                           <Component id="jButtonModifierUtilisateur" alignment="0" max="32767" attributes="0"/>
                           <Component id="jButtonSuppUtilisateur" alignment="0" max="32767" attributes="0"/>
-                          <Component id="jButtonAfficherCv" alignment="0" max="32767" attributes="0"/>
                           <Component id="jButtonSuppToutUtilisateurs" alignment="0" max="32767" attributes="0"/>
                           <Component id="jLabelEtatVider" alignment="1" min="-2" pref="266" max="-2" attributes="0"/>
                       </Group>
@@ -47,7 +46,7 @@
               <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
               <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="32767" attributes="0"/>
-              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+              <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="jScrollPane1" alignment="0" min="-2" pref="546" max="-2" attributes="0"/>
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="jButtonCreerUtilisateur" min="-2" pref="40" max="-2" attributes="0"/>
@@ -61,8 +60,6 @@
                       <Component id="jButtonRafraichir" min="-2" pref="40" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="jLabelEtatVider" min="-2" pref="30" max="-2" attributes="0"/>
-                      <EmptySpace max="32767" attributes="0"/>
-                      <Component id="jButtonAfficherCv" min="-2" pref="40" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
@@ -229,20 +226,6 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonModifierUtilisateurActionPerformed"/>
       </Events>
-    </Component>
-    <Component class="javax.swing.JButton" name="jButtonAfficherCv">
-      <Properties>
-        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="0" green="66" red="0" type="rgb"/>
-        </Property>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Segoe UI Black" size="11" style="0"/>
-        </Property>
-        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="ff" green="ff" red="ff" type="rgb"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="Afficher CV"/>
-      </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="jButtonSuppUtilisateur">
       <Properties>

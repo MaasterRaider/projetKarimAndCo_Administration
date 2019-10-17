@@ -61,7 +61,6 @@ public class PanneauAdministration extends javax.swing.JPanel {
         jTableInfo = new javax.swing.JTable();
         jButtonCreerUtilisateur = new javax.swing.JButton();
         jButtonModifierUtilisateur = new javax.swing.JButton();
-        jButtonAfficherCv = new javax.swing.JButton();
         jButtonSuppUtilisateur = new javax.swing.JButton();
 
         jButtonSuppToutUtilisateurs.setBackground(new java.awt.Color(0, 0, 0));
@@ -121,11 +120,6 @@ public class PanneauAdministration extends javax.swing.JPanel {
             }
         });
 
-        jButtonAfficherCv.setBackground(new java.awt.Color(0, 102, 0));
-        jButtonAfficherCv.setFont(new java.awt.Font("Segoe UI Black", 0, 11)); // NOI18N
-        jButtonAfficherCv.setForeground(new java.awt.Color(255, 255, 255));
-        jButtonAfficherCv.setText("Afficher CV");
-
         jButtonSuppUtilisateur.setBackground(new java.awt.Color(0, 0, 0));
         jButtonSuppUtilisateur.setFont(new java.awt.Font("Segoe UI Black", 0, 11)); // NOI18N
         jButtonSuppUtilisateur.setForeground(new java.awt.Color(255, 255, 255));
@@ -151,7 +145,6 @@ public class PanneauAdministration extends javax.swing.JPanel {
                             .addComponent(jButtonCreerUtilisateur, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jButtonModifierUtilisateur, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jButtonSuppUtilisateur, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButtonAfficherCv, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jButtonSuppToutUtilisateurs, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabelEtatVider, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(55, 55, 55))
@@ -165,7 +158,7 @@ public class PanneauAdministration extends javax.swing.JPanel {
                 .addGap(49, 49, 49)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 546, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jButtonCreerUtilisateur, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -178,9 +171,7 @@ public class PanneauAdministration extends javax.swing.JPanel {
                         .addGap(18, 18, 18)
                         .addComponent(jButtonRafraichir, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jLabelEtatVider, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButtonAfficherCv, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jLabelEtatVider, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(21, 21, 21))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -192,34 +183,44 @@ public class PanneauAdministration extends javax.swing.JPanel {
         cConnexionAdmin.getPanneauFormConnexion1().getjButtonConnexion().addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                Utilisateur.setIdentifiant("Admin");
-                if (Utilisateur.getInstance().getEstConnecte() && Utilisateur.getInstance().getStatut().equals(1)) {
-                    Boolean Supp = false;
-                    cConnexionAdmin.setVisible(false);
-                    //Création d'un message de confirmation pour la suppression de l'intégralité des utilisateurs
-                    JOptionPane jop = new JOptionPane();
-                    int option = jop.showConfirmDialog(null, "Voulez-vous vraiment supprimer l'intégralité de la table 'utilisateurs' ?", "Confirmation requise", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+                if (cConnexionAdmin.getPanneauFormConnexion1().getConnexionOK()) {
+                    Utilisateur.setIdentifiant(cConnexionAdmin.getPanneauFormConnexion1().getPanneauIdentifiant().getChamp2().getText());
+                    Utilisateur.getInstance().chargerInformationsUtilisateur();
+                    if (Utilisateur.getInstance().getEstConnecte() && Utilisateur.getInstance().getStatut().equals(1)) {
+                        Boolean Supp = false;
+                        cConnexionAdmin.setVisible(false);
+                        //Création d'un message de confirmation pour la suppression de l'intégralité des utilisateurs
+                        JOptionPane jop = new JOptionPane();
+                        int option = jop.showConfirmDialog(null, "Voulez-vous vraiment supprimer l'intégralité de la table 'utilisateurs' ?", "Confirmation requise", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
 
-                    //Si le message est égal à Ok
-                    if (option == JOptionPane.OK_OPTION) {
-                        //Supp est vrai
-                        Supp = true;
-                        //Si la fonction pour tout supprimer est appelée et que Supp est vrai alors création message de confirmation, appelle de la fonction, suppression du contenu de la table
-                        if (DaoSIO.getInstance().requeteAction("DELETE FROM utilisateurs WHERE statut = 0") == 1 && Supp == true) {
-                            jLabelEtatVider.setForeground(Color.blue);
-                            jLabelEtatVider.setText("Les utilisateurs ont été supprimés sauf les administrateurs.");
-                            updateJTableInfo();
-                        }
+                        //Si le message est égal à Ok
+                        if (option == JOptionPane.OK_OPTION) {
+                            //Supp est vrai
+                            Supp = true;
+                            //Si la fonction pour tout supprimer est appelée et que Supp est vrai alors création message de confirmation, appelle de la fonction, suppression du contenu de la table
+                            if (DaoSIO.getInstance().requeteAction("DELETE FROM utilisateurs WHERE statut = 0") == 1 && Supp == true) {
+                                jLabelEtatVider.setForeground(Color.blue);
+                                jLabelEtatVider.setText("Les utilisateurs ont été supprimés sauf les administrateurs.");
+                                updateJTableInfo();
+                            }
 //                            else {
 //                            //Sinon, message d'erreur
 //                            jLabelEtatVider.setForeground(Color.blue);
 //                            jLabelEtatVider.setText("Les utilisateurs ont été supprimés sauf les administrateurs.");
 //                            updateJTableInfo();
 //                        }
-                        //Si Supp est différent de vrai, message d'erreur
-                    } else if (Supp != true) {
-                        jLabelEtatVider.setForeground(Color.red);
-                        jLabelEtatVider.setText("L'opération a été annulée");
+                            //Si Supp est différent de vrai, message d'erreur
+                        } else if (Supp != true) {
+                            jLabelEtatVider.setForeground(Color.red);
+                            jLabelEtatVider.setText("L'opération a été annulée");
+                        }
+                    } else {
+                        cConnexionAdmin.getPanneauFormConnexion1().getjLabelEtatConnexion().setForeground(Color.red);
+                        if (Utilisateur.getInstance().getEstConnecte().equals(false)) {
+                            cConnexionAdmin.getPanneauFormConnexion1().getjLabelEtatConnexion().setText("Identifiant et/ou mot de passe incorrect(s)");
+                        } else if (!Utilisateur.getInstance().getStatut().equals(1)) {
+                            cConnexionAdmin.getPanneauFormConnexion1().getjLabelEtatConnexion().setText("Vous n'êtes pas admin");
+                        }
                     }
                 }
             }
@@ -391,6 +392,8 @@ public class PanneauAdministration extends javax.swing.JPanel {
             cConnexionAdmin.getPanneauFormConnexion1().getjButtonConnexion().addMouseListener(new MouseListener() {
                 @Override
                 public void mouseClicked(MouseEvent e) {
+                    Utilisateur.setIdentifiant(cConnexionAdmin.getPanneauFormConnexion1().getPanneauIdentifiant().getChamp2().getText());
+                    Utilisateur.getInstance().chargerInformationsUtilisateur();
                     if (cConnexionAdmin.getPanneauFormConnexion1().getConnexionOK()) {
                         if (Utilisateur.getInstance().getEstConnecte() && Utilisateur.getInstance().getStatut().equals(1)) {
                             Boolean Supp = false;
@@ -433,16 +436,17 @@ public class PanneauAdministration extends javax.swing.JPanel {
                             }
                         } else {
                             cConnexionAdmin.getPanneauFormConnexion1().getjLabelEtatConnexion().setForeground(Color.red);
-                            if (!Utilisateur.getInstance().getStatut().equals(1)) {
-                                cConnexionAdmin.getPanneauFormConnexion1().getjLabelEtatConnexion().setText("Vous n'êtes pas admin");
-                            } else if (Utilisateur.getInstance().getEstConnecte().equals(false)) {
+                            if (Utilisateur.getInstance().getEstConnecte().equals(false)) {
                                 cConnexionAdmin.getPanneauFormConnexion1().getjLabelEtatConnexion().setText("Identifiant et/ou mot de passe incorrect(s)");
+                            } else if (!Utilisateur.getInstance().getStatut().equals(1)) {
+                                cConnexionAdmin.getPanneauFormConnexion1().getjLabelEtatConnexion().setText("Vous n'êtes pas admin");
                             }
                         }
                     }
                 }
 
                 @Override
+
                 public void mousePressed(MouseEvent e) {
                 }
 
@@ -457,7 +461,8 @@ public class PanneauAdministration extends javax.swing.JPanel {
                 @Override
                 public void mouseExited(MouseEvent e) {
                 }
-            });
+            }
+            );
             cConnexionAdmin.setLocationRelativeTo(this);
             cConnexionAdmin.setModal(true);
             cConnexionAdmin.setVisible(true);
@@ -520,7 +525,8 @@ public class PanneauAdministration extends javax.swing.JPanel {
                 compteur_ligne++;
             }
         } catch (SQLException ex) {
-            Logger.getLogger(DaoSIO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(DaoSIO.class
+                    .getName()).log(Level.SEVERE, null, ex);
         }
         return resultat;
     }
@@ -543,13 +549,13 @@ public class PanneauAdministration extends javax.swing.JPanel {
                 }
             }
         } catch (SQLException ex) {
-            Logger.getLogger(DaoSIO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(DaoSIO.class
+                    .getName()).log(Level.SEVERE, null, ex);
         }
         return resultat;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButtonAfficherCv;
     private javax.swing.JButton jButtonCreerUtilisateur;
     private javax.swing.JButton jButtonModifierUtilisateur;
     private javax.swing.JButton jButtonRafraichir;
