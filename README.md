@@ -1,6 +1,6 @@
 ![enter image description here](https://www.freepngimg.com/thumb/java/1-2-java-free-png-image.png)
 <br>
-### ProjetKarimAndCo - composant 4 : espace administrateur 
+### ProjetKarimAndCo - composant 4 : Espace Administrateur 
 
 ----------
 
@@ -44,7 +44,6 @@ Sur NetBeans clic droit sur le projet, propriété, Libraries, add JAR/Folder.
 Dépendances :  [cliquez-ici](https://drive.google.com/drive/folders/1dKuqR9ON-Xatcf9F6PNjLwxOV_AhOw_f?usp=sharing)  
 
 Info importante :
-    
     - Il se peut que le package "com.karimandco.auth" soit mise à jour assez régulièrement.Pour télécharger la dernière version  [cliquez-ici](https://github.com/pawel956/projetKarimAndCo_ConnexionInscription/)
 
 #### Informations divers
