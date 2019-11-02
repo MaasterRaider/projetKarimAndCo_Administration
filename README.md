@@ -24,7 +24,7 @@ Avec ce composant, on peut :
 
 #### Documentation
 
-Javadoc :  [cliquez-ici](https://pawel956.github.io/projetKarimAndCo_ConnexionInscription/)  
+Javadoc :  [cliquez-ici](F:\INFORMATIQUE\SIO\Programmation\Java\jajajajadoc\dist\javadoc\index.html)  
 Document utilisateur :  [cliquez-ici](https://docs.google.com/document/d/1SoZUUYuQD3gA_-CL9Uf7U8R_goBUg8Na-MeSQCfs1do/edit?usp=sharing)
 
 
